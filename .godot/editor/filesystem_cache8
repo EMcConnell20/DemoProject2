@@ -1,0 +1,17 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1737757396
+icon.svg::CompressedTexture2D::7772367834076792412::1737752181::1737752186::1::::<><>::
+::res://Assets/::1737769295
+ball.png::CompressedTexture2D::4291824153592389786::1737769289::1737769296::1::::<><>::
+floor.png::CompressedTexture2D::6580773025738624200::1737767960::1737767962::1::::<><>::
+paddle.png::CompressedTexture2D::3101582814060464541::1737768930::1737768932::1::::<><>::
+::res://Assets/minecraft_font/::1737755047
+Minecraft.ttf::FontFile::5659167807046043201::1737755033::1737755047::1::::<><>::
+::res://Bubbles/::1737752210
+::res://Scenes/::1737769113
+main.tscn::PackedScene::8610706604656326350::1737769113::0::1::::<><>::uid://c001mubenkoui::::res://Assets/floor.png<>res://Scripts/main.gd<>uid://bkgou64ot5d8p::::res://Assets/paddle.png<>uid://b2e8ymt1vhq7s::::res://Assets/ball.png<>res://Scripts/player.gd<>uid://cmvlwxaqnl4bd::::res://Assets/minecraft_font/Minecraft.ttf<>res://Scripts/ball.gd<>res://Scripts/bot.gd
+::res://Scripts/::1737766111
+main.gd::GDScript::-1::1737766031::0::1::::<>Sprite2D<>::
+player.gd::GDScript::-1::1737761139::0::1::::<>StaticBody2D<>::
+ball.gd::GDScript::-1::1737766111::0::1::::<>CharacterBody2D<>::
+bot.gd::GDScript::-1::1737762860::0::1::::<>StaticBody2D<>::
