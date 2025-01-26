@@ -1,30 +1,29 @@
 extends StaticBody2D
 
-## Consts ##
-
-var SPEED: float = 256.0
-
-## Vars ##
-
-var ball_pos: Vector2 = Vector2(0.0, 0.0)
-var ball_speed: float = 0.0
-
 ## Funcs ##
 
-func _ready() -> void:
-	pass
-
-func _process(_dt: float) -> void:
-	ball_pos = $"../ball".position
-	ball_speed = $"../ball".speed
-
 func _physics_process(dt: float) -> void:
-	var goal: float = (0.0 - self.position.y) / 64.0 * ((-ball_pos.x + 700.0) / 640.0) ** 2
+	# Verticle Direction Tp Move Towards
+	var goal: float = 0.0
 	
-	var d_mod: float = ((-ball_pos.x + 700.0) ** 2)
-	if d_mod == 0.0: d_mod += 0.01
+	# Factor Of The Ball's Distance From The Bot
+	var ball_distance_factor: float = (-globals.ball_pos.x / 320.0 + 2.0) ** 2.0
+	if ball_distance_factor == 0.0: ball_distance_factor = 0.01
 	
-	goal += ((ball_pos.y - self.position.y) * abs(ball_pos.y - self.position.y) * 128.0 * ball_speed ** 2 / (d_mod * 300.0 ** 2))
+	# Sets goal to distance from middle of screen
+	goal = (0.0 - self.position.y) / 120.0
+	goal *= ball_distance_factor
+	
+	# Factors vertical distance to ball
+	goal += (
+		(globals.ball_pos.y - self.position.y) # Distance from paddle to ball
+		* abs(globals.ball_pos.y - self.position.y) # Squares it while keeping the sign
+		/ 360.0 # (Paddle Height * 0.5)^2
+		* (globals.ball_speed / globals.BALL_BASE_SPEED) # Ball Speed / Base Ball Speed
+		/ ball_distance_factor # Comment
+	)
+	
+	# Believe it or not, this thing actually tends to be within [-1, 1]
 	goal = clampf(goal, -1.0, 1.0)
 	
-	self.position.y = clampf(self.position.y + goal * self.SPEED * dt, -288.0, 288.0)
+	self.position.y = clampf(self.position.y + globals.PADDLE_SPEED * goal * dt, -284.0, 284.0)

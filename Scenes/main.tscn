@@ -1,18 +1,19 @@
 [gd_scene load_steps=13 format=3 uid="uid://duxdcygbyd6ik"]
 
-[ext_resource type="Texture2D" uid="uid://c001mubenkoui" path="res://Assets/floor.png" id="1_jg5jb"]
+[ext_resource type="Texture2D" uid="uid://cjc75nqv2anqg" path="res://Assets/game_board.png" id="1_thsj6"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="2_k51p2"]
-[ext_resource type="Texture2D" uid="uid://bkgou64ot5d8p" path="res://Assets/paddle.png" id="2_lr3hf"]
-[ext_resource type="Texture2D" uid="uid://b2e8ymt1vhq7s" path="res://Assets/ball.png" id="3_ilhc6"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_wkhpd"]
-[ext_resource type="FontFile" uid="uid://cmvlwxaqnl4bd" path="res://Assets/minecraft_font/Minecraft.ttf" id="4_xfl07"]
+[ext_resource type="Texture2D" uid="uid://ccdnq5knosqf7" path="res://Assets/new_paddle.png" id="4_03n1d"]
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="5_khnaw"]
 [ext_resource type="Script" path="res://Scripts/bot.gd" id="5_rp0c5"]
+[ext_resource type="Texture2D" uid="uid://di6ydvqeryy4i" path="res://Assets/new_ball.png" id="7_dwswq"]
+[ext_resource type="FontFile" uid="uid://cnlv7k7cx5u3x" path="res://Assets/pixel_font/PixelatedEleganceRegular-ovyAA.ttf" id="8_rbobr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8bwr"]
-size = Vector2(4, 128)
+size = Vector2(6, 120)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vxnmt"]
+distance = -7.62939e-06
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lblah"]
 
@@ -23,34 +24,36 @@ size = Vector2(8, 8)
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(640, 360)
-texture = ExtResource("1_jg5jb")
+texture = ExtResource("1_thsj6")
 script = ExtResource("2_k51p2")
 
 [node name="player" type="StaticBody2D" parent="."]
+z_index = 2
 position = Vector2(-600, 0)
 collision_mask = 0
 script = ExtResource("3_wkhpd")
 
 [node name="sprite" type="Sprite2D" parent="player"]
-texture = ExtResource("2_lr3hf")
+texture = ExtResource("4_03n1d")
 
 [node name="collider" type="CollisionShape2D" parent="player"]
 visible = false
-position = Vector2(6, 0)
+position = Vector2(3, 0)
 shape = SubResource("RectangleShape2D_f8bwr")
 one_way_collision_margin = 0.0
 
 [node name="bot" type="StaticBody2D" parent="."]
+z_index = 2
 position = Vector2(600, 0)
 collision_mask = 0
 script = ExtResource("5_rp0c5")
 
 [node name="sprite" type="Sprite2D" parent="bot"]
-texture = ExtResource("2_lr3hf")
+texture = ExtResource("4_03n1d")
 
 [node name="collider" type="CollisionShape2D" parent="bot"]
 visible = false
-position = Vector2(-6, 0)
+position = Vector2(-3, 0)
 shape = SubResource("RectangleShape2D_f8bwr")
 
 [node name="border" type="StaticBody2D" parent="."]
@@ -58,56 +61,66 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="top" type="CollisionShape2D" parent="border"]
-position = Vector2(0, -354)
+position = Vector2(0, -344)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_vxnmt")
 
 [node name="bottom" type="CollisionShape2D" parent="border"]
-position = Vector2(0, 354)
+position = Vector2(0, 344)
 shape = SubResource("WorldBoundaryShape2D_vxnmt")
 
 [node name="posts" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 8
 
 [node name="left" type="CollisionShape2D" parent="posts"]
-position = Vector2(-640, 0)
+position = Vector2(-650, 0)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_lblah")
 
 [node name="right" type="CollisionShape2D" parent="posts"]
-position = Vector2(640, 0)
+position = Vector2(650, 0)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_lblah")
 
 [node name="ball" type="CharacterBody2D" parent="."]
+z_index = 1
 scale = Vector2(2, 2)
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("5_khnaw")
 
 [node name="sprite" type="Sprite2D" parent="ball"]
-texture = ExtResource("3_ilhc6")
+texture = ExtResource("7_dwswq")
 
 [node name="collider" type="CollisionShape2D" parent="ball"]
 visible = false
 shape = SubResource("RectangleShape2D_xno1i")
+
+[node name="baller" type="Timer" parent="ball"]
+wait_time = 2.0
+one_shot = true
 
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="player_score" type="Label" parent="ui"]
 top_level = true
 texture_filter = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -160.0
-offset_top = 16.0
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -326.0
 offset_right = -32.0
-offset_bottom = 80.0
+offset_bottom = -264.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("4_xfl07")
-theme_override_font_sizes/font_size = 64
+grow_vertical = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("8_rbobr")
+theme_override_font_sizes/font_size = 54
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -115,22 +128,22 @@ vertical_alignment = 1
 [node name="bot_score" type="Label" parent="ui"]
 top_level = true
 texture_filter = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = 38.0
-offset_top = 16.0
-offset_right = 166.0
-offset_bottom = 80.0
+offset_top = -326.0
+offset_right = 230.0
+offset_bottom = -264.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("4_xfl07")
-theme_override_font_sizes/font_size = 64
+grow_vertical = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("8_rbobr")
+theme_override_font_sizes/font_size = 54
 text = "0"
 vertical_alignment = 1
 
-[node name="baller" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
 [connection signal="body_entered" from="posts" to="." method="_on_posts_body_entered"]
-[connection signal="timeout" from="baller" to="." method="_on_baller_timeout"]
+[connection signal="timeout" from="ball/baller" to="ball" method="_on_baller_timeout"]

@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkfeknbuw41rw"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_dn6us"]
+[ext_resource type="Texture2D" uid="uid://iuqyg4uwc8st" path="res://Assets/menu_board.png" id="2_urk6u"]
+[ext_resource type="FontFile" uid="uid://cnlv7k7cx5u3x" path="res://Assets/pixel_font/PixelatedEleganceRegular-ovyAA.ttf" id="3_81wg5"]
+[ext_resource type="Texture2D" uid="uid://b2e8ymt1vhq7s" path="res://Assets/ball.png" id="4_q07ws"]
+
+[node name="menu" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 360)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_dn6us")
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("2_urk6u")
+offset = Vector2(640, 360)
+
+[node name="margin" type="MarginContainer" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.0
+offset_top = -40.0
+offset_right = 245.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="buttons" type="VBoxContainer" parent="margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="play" type="Button" parent="margin/buttons"]
+texture_filter = 1
+custom_minimum_size = Vector2(192, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/icon_max_width = 30
+theme_override_fonts/font = ExtResource("3_81wg5")
+theme_override_font_sizes/font_size = 27
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "PLAY"
+icon = ExtResource("4_q07ws")
+text_overrun_behavior = 1
+expand_icon = true
+
+[node name="options" type="Button" parent="margin/buttons"]
+custom_minimum_size = Vector2(192, 48)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_81wg5")
+theme_override_font_sizes/font_size = 27
+disabled = true
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "OPTIONS"
+
+[node name="quit" type="Button" parent="margin/buttons"]
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_81wg5")
+theme_override_font_sizes/font_size = 27
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "QUIT"
+
+[connection signal="pressed" from="margin/buttons/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="margin/buttons/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="margin/buttons/quit" to="." method="_on_quit_pressed"]
