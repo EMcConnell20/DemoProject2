@@ -14,17 +14,17 @@ func _physics_process(dt: float) -> void:
 	if ball_distance_factor == 0.0: ball_distance_factor = 0.01
 	
 	# Sets goal to distance from middle of screen
-	goal = (0.0 - self.position.y) / 60.0
+	goal = (0.0 - self.position.y) / 120.0
 	goal *= ball_distance_factor
 	goal *= ball_speed_factor
 	
 	# Factors vertical distance to ball
 	goal += (
-		(globals.ball_pos.y - self.position.y) # Distance from paddle to ball
+		(globals.ball_pos.y - self.position.y)
 		* abs(globals.ball_pos.y - self.position.y) # Squares it while keeping the sign
 		/ 360.0 # (Paddle Height * 0.5)^2
 		/ ball_distance_factor
-		* ball_speed_factor ** 2.0
+		* ball_speed_factor
 	)
 	
 	# Believe it or not, this thing actually tends to be within [-1, 1]

@@ -51,11 +51,18 @@ func _bounce(collider: StaticBody2D) -> void:
 	
 	match collider.collision_layer:
 		1: # Paddles
-			self.speed = minf(self.speed + globals.BALL_INCR_SPEED, globals.BALL_HIGH_SPEED)
-			self.dir = self._rand_bounce(collider)
-			globals.ball_speed = self.speed
-			
-			signals.audio_paddle_bounce.emit(old_direction, self.dir)
+			if abs(self.position.x) >= abs(collider.position.x):
+				# If behind paddle, just move past it
+				self.position.x += 4.0 * sign(self.position.x)
+			else:
+				# If in front of paddle, move to very front of paddle. 
+				self.position.x -= collider.position.x - self.position.x - 9.0 * sign(self.position.x)
+				self.speed = minf(self.speed + globals.BALL_INCR_SPEED, globals.BALL_HIGH_SPEED)
+				self.dir = self._rand_bounce(collider)
+
+				globals.ball_speed = self.speed
+				
+				signals.audio_paddle_bounce.emit(old_direction, self.dir)
 
 		2: # Borders
 			self.dir.y *= -1.0
@@ -63,7 +70,6 @@ func _bounce(collider: StaticBody2D) -> void:
 
 		_: # Goal Posts & Undefined
 			return
-
 
 func _rand_bounce(collider: StaticBody2D) -> Vector2:
 	const MAX_DEFLECT_ANGLE: float = (3.0 ** 0.5 / 2.0)

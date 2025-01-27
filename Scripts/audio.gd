@@ -14,7 +14,7 @@ func _ready() -> void:
 func _play_paddle_bounce(old_direction: Vector2, new_direction: Vector2) -> void:
 	self.stop()
 	self.stream = PADDLE_NOISE
-	self.pitch_scale = 1.0 + old_direction.dot(new_direction) / 4.0 * globals.BALL_BASE_SPEED / globals.ball_speed
+	self.pitch_scale = 1.0 + old_direction.dot(new_direction) / 32.0 * globals.BALL_BASE_SPEED / globals.ball_speed
 	self.play()
 
 func _play_wall_bounce() -> void:
