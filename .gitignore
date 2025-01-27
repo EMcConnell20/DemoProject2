@@ -9,3 +9,7 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 data_*/
+
+# Shader Cache
+.godot/
+shader_cache
