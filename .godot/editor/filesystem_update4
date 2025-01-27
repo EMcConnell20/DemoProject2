@@ -1,0 +1,10 @@
+res://Scenes/main.tscn
+res://notes.md
+res://Scenes/menu.tscn
+res://Scenes/options.tscn
+res://Scripts/ball.gd
+res://Scripts/signals.gd
+res://Scripts/audio.gd
+res://Scripts/main.gd
+res://Scripts/globals.gd
+res://Scripts/bot.gd

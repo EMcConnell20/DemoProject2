@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://q85lc1srar60"
-path="res://.godot/imported/matrix_font.ttf-27b5c418d7cc59f74fc3a8c8b202cf37.fontdata"
+uid="uid://cnlv7k7cx5u3x"
+path="res://.godot/imported/pixel_font.ttf-48745e87a9e35fb76e587bff2d4b2972.fontdata"
 
 [deps]
 
-source_file="res://Assets/matrix_font.ttf"
-dest_files=["res://.godot/imported/matrix_font.ttf-27b5c418d7cc59f74fc3a8c8b202cf37.fontdata"]
+source_file="res://Assets/Fonts/pixel_font.ttf"
+dest_files=["res://.godot/imported/pixel_font.ttf-48745e87a9e35fb76e587bff2d4b2972.fontdata"]
 
 [params]
 

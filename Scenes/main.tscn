@@ -1,13 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://duxdcygbyd6ik"]
+[gd_scene load_steps=15 format=3 uid="uid://duxdcygbyd6ik"]
 
-[ext_resource type="Texture2D" uid="uid://cjc75nqv2anqg" path="res://Assets/game_board.png" id="1_thsj6"]
+[ext_resource type="Texture2D" uid="uid://cjc75nqv2anqg" path="res://Assets/Images/game_board.png" id="1_thsj6"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="2_k51p2"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_wkhpd"]
-[ext_resource type="Texture2D" uid="uid://ccdnq5knosqf7" path="res://Assets/new_paddle.png" id="4_03n1d"]
+[ext_resource type="Texture2D" uid="uid://ccdnq5knosqf7" path="res://Assets/Images/new_paddle.png" id="4_03n1d"]
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="5_khnaw"]
 [ext_resource type="Script" path="res://Scripts/bot.gd" id="5_rp0c5"]
-[ext_resource type="Texture2D" uid="uid://di6ydvqeryy4i" path="res://Assets/new_ball.png" id="7_dwswq"]
-[ext_resource type="FontFile" uid="uid://cnlv7k7cx5u3x" path="res://Assets/pixel_font/PixelatedEleganceRegular-ovyAA.ttf" id="8_rbobr"]
+[ext_resource type="Texture2D" uid="uid://di6ydvqeryy4i" path="res://Assets/Images/new_ball.png" id="7_dwswq"]
+[ext_resource type="FontFile" uid="uid://cnlv7k7cx5u3x" path="res://Assets/Fonts/pixel_font.ttf" id="8_rbobr"]
+[ext_resource type="AudioStream" uid="uid://cow1eudb7xmdw" path="res://Assets/Audio/bounce.wav" id="9_cqs4m"]
+[ext_resource type="Script" path="res://Scripts/audio.gd" id="10_g4qlx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8bwr"]
 size = Vector2(6, 120)
@@ -26,6 +28,55 @@ texture_repeat = 1
 position = Vector2(640, 360)
 texture = ExtResource("1_thsj6")
 script = ExtResource("2_k51p2")
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="player_score" type="Label" parent="ui"]
+top_level = true
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -326.0
+offset_right = -32.0
+offset_bottom = -264.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("8_rbobr")
+theme_override_font_sizes/font_size = 54
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="bot_score" type="Label" parent="ui"]
+top_level = true
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 38.0
+offset_top = -326.0
+offset_right = 230.0
+offset_bottom = -264.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("8_rbobr")
+theme_override_font_sizes/font_size = 54
+text = "0"
+vertical_alignment = 1
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_cqs4m")
+volume_db = -15.0
+mix_target = 1
+script = ExtResource("10_g4qlx")
 
 [node name="player" type="StaticBody2D" parent="."]
 z_index = 2
@@ -98,52 +149,14 @@ texture = ExtResource("7_dwswq")
 visible = false
 shape = SubResource("RectangleShape2D_xno1i")
 
-[node name="baller" type="Timer" parent="ball"]
-wait_time = 2.0
+[node name="freeze_timer" type="Timer" parent="ball"]
+wait_time = 1.5
 one_shot = true
 
-[node name="ui" type="CanvasLayer" parent="."]
-
-[node name="player_score" type="Label" parent="ui"]
-top_level = true
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -224.0
-offset_top = -326.0
-offset_right = -32.0
-offset_bottom = -264.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 2
-theme_override_fonts/font = ExtResource("8_rbobr")
-theme_override_font_sizes/font_size = 54
-text = "0"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="bot_score" type="Label" parent="ui"]
-top_level = true
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 38.0
-offset_top = -326.0
-offset_right = 230.0
-offset_bottom = -264.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 10
-theme_override_fonts/font = ExtResource("8_rbobr")
-theme_override_font_sizes/font_size = 54
-text = "0"
-vertical_alignment = 1
+[node name="respawn_timer" type="Timer" parent="ball"]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="body_entered" from="posts" to="." method="_on_posts_body_entered"]
-[connection signal="timeout" from="ball/baller" to="ball" method="_on_baller_timeout"]
+[connection signal="timeout" from="ball/freeze_timer" to="ball" method="_on_freeze_timer_timeout"]
+[connection signal="timeout" from="ball/respawn_timer" to="ball" method="_on_respawn_timer_timeout"]

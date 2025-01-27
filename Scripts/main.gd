@@ -13,7 +13,7 @@ func _on_posts_body_entered(body: Node2D) -> void:
 	else:
 		score[0] += 1
 		$ui/player_score.text = str(score[0])
-		
+	
 	# TODO - Add Game Over Screen
 		
-	$ball.reset()
+	$ball.respawn()

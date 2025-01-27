@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c001mubenkoui"
-path="res://.godot/imported/floor.png-1e503fdcbfc8415a976a6bbee47dc71e.ctex"
+uid="uid://ccdnq5knosqf7"
+path="res://.godot/imported/new_paddle.png-4bb9b079ffbc51150fb43595151cbc9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/floor.png"
-dest_files=["res://.godot/imported/floor.png-1e503fdcbfc8415a976a6bbee47dc71e.ctex"]
+source_file="res://Assets/Images/new_paddle.png"
+dest_files=["res://.godot/imported/new_paddle.png-4bb9b079ffbc51150fb43595151cbc9a.ctex"]
 
 [params]
 

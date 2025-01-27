@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkfeknbuw41rw"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_dn6us"]
-[ext_resource type="Texture2D" uid="uid://iuqyg4uwc8st" path="res://Assets/menu_board.png" id="2_urk6u"]
-[ext_resource type="FontFile" uid="uid://cnlv7k7cx5u3x" path="res://Assets/pixel_font/PixelatedEleganceRegular-ovyAA.ttf" id="3_81wg5"]
-[ext_resource type="Texture2D" uid="uid://b2e8ymt1vhq7s" path="res://Assets/ball.png" id="4_q07ws"]
+[ext_resource type="Texture2D" uid="uid://iuqyg4uwc8st" path="res://Assets/Images/menu_board.png" id="2_urk6u"]
+[ext_resource type="FontFile" uid="uid://cnlv7k7cx5u3x" path="res://Assets/Fonts/pixel_font.ttf" id="3_81wg5"]
+[ext_resource type="Texture2D" uid="uid://b2e8ymt1vhq7s" path="res://Assets/Images/ball.png" id="4_q07ws"]
 
 [node name="menu" type="Control"]
 texture_filter = 1
