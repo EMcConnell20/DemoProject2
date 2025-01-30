@@ -1,1 +1,7 @@
 res://Scenes/main.tscn
+res://Shaders/test_shader.tres
+res://Shaders/test_shader.gdshader
+res://Scenes/menu.tscn
+res://Scenes/options.tscn
+res://Shaders/crt_shader.gdshader
+res://Shaders/crt_shader.tres
