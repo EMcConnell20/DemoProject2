@@ -13,3 +13,9 @@ data_*/
 # Shader Cache
 .godot/
 shader_cache
+
+# Godot Imports
+.import/*
+
+# MacBook Shenanigans
+.DS_Store
